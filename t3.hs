@@ -85,5 +85,11 @@ newFunc x = [(x,x*x)] ++ (newFunc (x-1))
 geraTabela :: Int -> [(Int,Int)]
 geraTabela x = reverse (newFunc x)
 
+-- ou ou + facil 
+  
+geraTabela2 :: Int -> [(Int,Int)]
+geraTabela2 0 = [] 
+geraTabela2 x = geraTabela2 (x-1)++[(x,x*x)]
+
 -- 
 

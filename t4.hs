@@ -27,14 +27,11 @@ writeAllRects w h rs =
 -- Use recursao para implementa-la.
 
 geraR :: Float -> Float -> Float -> Float -> [Rect]
-
 geraR 0 _ _ _ = []
-
 geraR n pos  w h =  [((pos ,0.0), w, h)] ++ geraR (n-1) (pos+70) w h
 
 
 genRects :: Float -> Float -> Float -> [Rect]
-
 genRects n w h = geraR n 0 w h
                                      -- Lista com somente um retangulo. 
 
@@ -45,9 +42,7 @@ genRects n w h = geraR n 0 w h
 
 
 myZip ::  [String] -> [Rect] -> [(Rect , String)]
-
 myZip _ [] = [] 
-
 myZip (n:ns) (x:xs)
                 | ns == [] =  (x , n ):myZip [n] xs 
                 | otherwise = (x , n ):myZip ns xs
@@ -56,9 +51,7 @@ applyStyles :: [String] -> [Rect] -> [(Rect,String)]
 applyStyles styles rects = myZip styles rects 
 
 geraLisCores :: Int -> [String]
-
 geraLisCores 0 = [] 
-
 geraLisCores x =  [printf "fill:rgb(%d,%d,%d)"  (x^x-30) (x^x+1) (x^x*3)  ] ++ geraLisCores ( x-1)
 
 

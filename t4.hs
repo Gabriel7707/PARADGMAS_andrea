@@ -25,10 +25,10 @@ writeAllRects w h rs =
 -- TO-DO
 -- Esta funcao deve gerar n retangulos de largura w e altura h.
 -- Use recursao para implementa-la.
-
+---                                      Q1            GERA LISTA DE ERTANGULOS + 60 PRA NAO FICAREM GRUDADOS
 geraR :: Float -> Float -> Float -> Float -> [Rect]
 geraR 0 _ _ _ = []
-geraR n pos  w h =  [((pos ,0.0), w, h)] ++ geraR (n-1) (pos+70) w h
+geraR n pos  w h =  [((pos ,0.0), w, h)] ++ geraR (n-1) (pos+60) w h
 
 
 genRects :: Float -> Float -> Float -> [Rect]
@@ -40,7 +40,8 @@ genRects n w h = geraR n 0 w h
 -- Se houverem menos retangulos que cores, algumas cores nao serao usadas.
 
 
-
+--                                       Q2 ----- MEU ZIP ... SE A LISTA DE COR EH MENOR QUE A DE RETANGULO , 
+--                                                REPETE A ULTIMA COR CATEH ACABAR A LISTA DE RETANGULOS 
 myZip ::  [String] -> [Rect] -> [(Rect , String)]
 myZip _ [] = [] 
 myZip (n:ns) (x:xs)
@@ -50,6 +51,7 @@ myZip (n:ns) (x:xs)
 applyStyles :: [String] -> [Rect] -> [(Rect,String)]
 applyStyles styles rects = myZip styles rects 
 
+--                                      Q3 ---- GERA UMA LISTA DE CORES DIFERENTES NAO ALEATÓRIAS DE TAMANHO N COMO PARAMETRO 
 geraLisCores :: Int -> [String]
 geraLisCores 0 = [] 
 geraLisCores x =  [printf "fill:rgb(%d,%d,%d)"  (x^x-30) (x^x+1) (x^x*3)  ] ++ geraLisCores ( x-1)
